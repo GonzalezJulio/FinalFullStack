@@ -21,11 +21,14 @@ export default function Header() {
           <Link to='/'>
           <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
           </Link>
-          <Link to='/about'>
-          <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
+          <Link to='/products'>
+          <li className='hidden sm:inline text-slate-700 hover:underline'>Products</li>
           </Link>
           <Link to='signin'>
           <li className='text-slate-700 hover:underline'>SignIn</li>
+          </Link>
+          <Link to='carts'>
+            <li className='text-slate-700 hover:underline'>Carts</li>
           </Link>
           
         </ul>

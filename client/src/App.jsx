@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
-import About from "./pages/About";
+import Products from "./pages/Products";
+import Carts from "./pages/Carts";
 
 export default function App() {
   return (
@@ -14,8 +15,10 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/carts" element={<Carts />} />
+
       </Routes>
     </BrowserRouter>
   );

@@ -2,9 +2,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors'
 import 'dotenv/config'
-import userRouter from './routes/user.route.js'
+
 import errorHandler from './middlewares/errorHandler.js';
 import notFoundhandler from './middlewares/notFoundhandler.js';
+
+import IndexRouter from './routes/index.js';
+
+let router = new IndexRouter()
+router = router.getRouter()
 
 //Conexion a mongoose
 mongoose.connect(process.env.MONGO_DB)
@@ -21,13 +26,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 /* app.use(morgan("dev")) */
 
-
+app.use("/api",router)
 app.use(errorHandler)
 app.use(notFoundhandler)
 
-app.use('/api/user', userRouter)
 
-app.listen(3000, () => {
-    console.log('Server listening on port 3000')
+
+app.listen(8080, () => {
+    console.log('Server listening on port 8080')
 })
 
