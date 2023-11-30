@@ -42,7 +42,7 @@ const productsSchema = new mongoose.Schema({
     
 });
 
-productsSchema.plugin(paginate)
+/* productsSchema.plugin(paginate) */
 const productModel = mongoose.model(collectionName, productsSchema)
 
 export default productModel 

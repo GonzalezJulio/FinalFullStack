@@ -1,60 +1,67 @@
-import productModel from "../models/schemas/product.model.js"
+
+import ProductsRepository from "../repositories/products.repository.js"
 
 export default class ProductsService {
-    contructor() {}
+    constructor() {
+        this.repository = new ProductsRepository()
+    }
     create = async (data) => {
         try{
-            let one =  await productModel.create(data)
-            return {
-                message: "product created",
-                response: one._id
-            }
-        }catch(error) {
+            let response = await this.repository.create(data)
+            return response
+        } catch(error){
+            console.log(error)
             return {
                 message: error.message,
-                response: error.fileName+": " + error.lineNumber
+                reponse: error.name
             }
-        } 
-    }    
+        }
+    }
     read = async () => {
         try{
-            let all = await productModel.find()
-            return {
-                message: "product read",
-                response: all
-            }
+            let response = await this.repository.read()
+            return response
         } catch(error){
+            console.log(error)
             return {
                 message: error.message,
-                response: error.fileName+": " + error.lineNumber
+                reponse: error.name
             }
         }
     }
-    update = async () => {
+    read = async (id) => {
         try{
-            let one = await productModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
-            return {
-                message: "product updated",
-                response: one._id
-            }
+            let response = await this.repository.read(id)
+            return response
         } catch(error){
+            console.log(error)
             return {
                 message: error.message,
-                response: error.fileName+": " + error.lineNumber
+                reponse: error.name
             }
         }
     }
-    destroy = async () => {
+    update = async (id, data) => {
         try{
-            let one =  await productModel.findByIdAndDelete(req.params.id)
-            return {
-                message: "product deleted",
-                response: one._id
-            }
-        }catch(error){
+            let response = await this.repository.update(id, data)
+            return response
+        } catch(error){
+            console.log(error)
             return {
                 message: error.message,
-                response: error.fileName+": " + error.lineNumber
+                reponse: error.name
+            }
+        }
+    }
+    destroy = async (id) => {
+        try{
+            let response = await this.repository.destroy(id)
+            return response
+        } catch(error){
+            console.log(error)
+            return {
+                message: error.message,
+                reponse: error.name
             }
         }
     }

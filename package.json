@@ -4,8 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server/index.js",
-    "start": "node server/index.js"
+    "start": "node ./server/index.js --mode prod",
+    "prod": "nodemon ./server/index.js --mode prod",
+    "dev": "nodemon ./server/index.js --mode dev"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "bcrypt": "^5.1.1",
     "commander": "^11.1.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.1",

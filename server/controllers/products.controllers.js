@@ -23,11 +23,19 @@ export default class ProductsController {
             next(error)
         }
     }
+    read = async (req, res, next) => {
+        try{
+            let response = await this.service.read(req.params.id)
+            return res.status(200).json(response)
+        } catch(error){
+            next(error)
+        }
+    }
 
     update =  async (req, res, next) => {
         try{
             let response = await this.service.update(req.params.id, req.body)
-            return res.status(200).json(response)
+            return res.status(201).json(response)
         }catch(error){
             next(error)
         }

@@ -1,11 +1,6 @@
-export default function (res, req, next) {
-    try{
-        return res.status(404).json({
-            message: req.method+": "+req.url,
-            response: null
-        })
-    } catch(error){
-        next(error)
-
-    }
-}
+export default (req, res, next) => {
+    let status = 404;
+    let from = `${req.method} ${req.url}`;
+    let message = "Not found endpoint";
+    return res.status(404).json({ status, from, message });
+  };
