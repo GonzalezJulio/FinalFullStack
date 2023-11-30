@@ -15,4 +15,7 @@ export default class ProductsDTO {
             this._id = crypto.randomBytes(12).toString('hex')
         }
     }
+
+    
 }
+

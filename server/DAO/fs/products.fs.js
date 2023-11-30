@@ -3,7 +3,7 @@ import fs from "fs";
 export default class ProductsFS {
   constructor() {
     this.products = [];
-    this.path = "./products.fs.json";
+    this.path = "./server/DAO/fs/files/products.fs.json";
     this.init();
   }
 
@@ -16,14 +16,16 @@ export default class ProductsFS {
     }
     return true;
   }
+  
 
   async create(data) {
     try {
         this.products.push(data);
         let data_json = JSON.stringify(this.products, null, 2);
         await fs.promises.writeFile(this.path, data_json);
+        console.log(data)
         return {
-            message: "product not found",
+            message: "product add",
             response: data,
           };
       } catch (error) {
@@ -35,18 +37,31 @@ export default class ProductsFS {
       }
   }
 
-  read() {
+  async read() {
     try {
+      
       let all = this.products;
-      if (this.products.length > 0) {
+      return all
+    } catch (error) {
+      console.log(error);
+      return {
+        message: error.message,
+        response: error.fileName + ": " + error.lineNumber,
+      };
+    }
+  }
+  read(id) {
+    try {
+      let one = this.products.find((each) => each._id == id);
+      if (one) {
         return {
           message: "product read",
-          response: all,
+          response: one,
         };
       } else {
         return {
           message: "product not found",
-          response: all,
+          response: one,
         };
       }
     } catch (error) {
