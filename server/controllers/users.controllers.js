@@ -41,7 +41,7 @@ export default class UserController {
     }
     destroy = async (req, res, next) => {
         try{
-            let response = await this.service.destroy(req.params.email);
+            let response = await this.service.destroy(req.params.id);
             return res.status(200).json(response);
         } catch(error){
             next(error);

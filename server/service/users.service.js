@@ -53,9 +53,9 @@ export default class UsersService {
             };
         }
     }
-    destroy = async (email) => {
+    destroy = async (id) => {
         try{
-            let response = await this.repository.destroy(email);
+            let response = await this.repository.destroy(id);
             return response;
         } catch(error){
             console.log(error);

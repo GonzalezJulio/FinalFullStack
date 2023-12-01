@@ -98,17 +98,16 @@ export default class UsersFS {
             };
         }
     }
-    destroy(email) {
+    destroy(id) {
         try {
-            let index = this.users.findIndex((each) => each.email == email);
-            if (index != -1) {
-                let user = this.users[index];
-                this.users.splice(index, 1);
+            let one = this.users.find((each) => each._id == id);
+            if(one){
+                this.users = this.users.filter((each) => each._id != id);
                 let data_json = JSON.stringify(this.users, null, 2);
                 fs.writeFileSync(this.path, data_json);
                 return {
-                    message: "user delete",
-                    response: user,
+                    message: "user deleted",
+                    response: one,
                 };
             } else {
                 return {
@@ -116,12 +115,12 @@ export default class UsersFS {
                     response: {},
                 };
             }
-        } catch (error) {
-            console.log(error);
-            return {
-                message: error.message,
-                response: error.fileName + ": " + error.lineNumber,
-            };
-        }
+    } catch(error){
+        console.log(error);
+        return {
+            message: error.message,
+            response: error.fileName + ": " + error.lineNumber,
+        };
     }
-}
+        
+}}

@@ -59,9 +59,9 @@ export default class UsersRepository {
       };
     }
   };
-  delete = async (email) => {
+  destroy = async (id) => {
     try {
-      let response = await this.model.delete(email);
+      let response = await this.model.destroy(id);
       return response;
     } catch (error) {
       console.log(error);

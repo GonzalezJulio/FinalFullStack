@@ -6,8 +6,8 @@ export default class UsersRouter extends MyRouter {
   init() {
     this.create("/", create);
     this.read("/", read);
-    this.read("/:email", read);
-    this.update("/:email", update);
-    this.destroy("/:email", destroy);
+    this.read("/:id", read);
+    this.update("/:id", update);
+    this.destroy("/:id", destroy);
   }
 }
