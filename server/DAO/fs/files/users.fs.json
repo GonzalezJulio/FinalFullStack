@@ -103,5 +103,18 @@
     "role": "admin",
     "_id": "cd8f2fb9a5edab96893060f5",
     "salt": "uFYj4WyEc4zH0JKHXTk9JgaVIvlq4DfB/CXcqM+inSBpwPtinLypNQkFPmEpZvS9t1sH69IIFZXre8V4mIvlTFrl9UbDNStt//uB7Rzxg/0v64QXurZIZ+90vR8oahx5ngAtdMarx9Qzwc8zdGE1YQOE4LwbhgQDlxcMtndxWWY="
+  },
+  {
+    "name": "Sura",
+    "lastname": "Gonzalez",
+    "email": "suragonzalez@gmail.com",
+    "age": "35",
+    "password": "b48ae9ae91bff8078e19da5d2112f49aa3cb6f15ae5306bb77ce8fd90c936cda",
+    "cartId": {
+      "products": [],
+      "_id": "7266b8d5f22d180e0f97c6db"
+    },
+    "role": "admin",
+    "salt": "foqFsd4R7rh3aumkrjT7/CV1tTU+AFSvsoRsYnHYILBTijhm/JiOwJo4pC+feMA+unWASM3qOZqHqpqE054xKxD8G7/GgFdUhisexjYIHEpdtnCAkhzGM8x+wPk8JGuHubPiA7fitmhJm+9mCGKvHYZlQ45k/gPyI3/ZrTzEG1Y="
   }
 ]

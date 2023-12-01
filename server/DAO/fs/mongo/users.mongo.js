@@ -1,13 +1,20 @@
+import cartsModel from '../../schemas/carts.schemas.js';
 import usersModel from '../../schemas/user.model.js'
+import crypto from "crypto"
 
 export default class UsersMongo {
-    constructor() {}
-    async create(data) {
+    constructor() {
+
+    }
+    async create(users) {
         try {
-            let one = await usersModel.create(data);
+            users.salt = crypto.randomBytes(128).toString("base64");
+            users.password = crypto.createHmac("sha256", users.salt).update(users.password).digest("hex");
+            users.cartId = await cartsModel.create()
+            usersModel.create(users)
             return {
                 message: "user created",
-                response: one._id,
+                response: users._id,
             };
         } catch (error) {
             return {
@@ -60,7 +67,7 @@ export default class UsersMongo {
             };
         }
     }
-    async update() {
+    async update(email) {
         try {
             let one = await usersModel.updateOne({
                 email: email
@@ -84,11 +91,9 @@ export default class UsersMongo {
         }
     }
 
-    async delete(email) {
+    async destroy(id) {
         try {
-            let one = await usersModel.deleteOne({
-                email: email
-            });
+            
             if (one) {
                 return {
                     message: "user deleted",
