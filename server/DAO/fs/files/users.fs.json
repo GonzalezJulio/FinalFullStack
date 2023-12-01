@@ -1,0 +1,116 @@
+[
+  {
+    "_id": "9e665ad942d30e589586eaa1",
+    "name": null,
+    "lastname": null,
+    "email": null,
+    "age": null,
+    "cartId": null,
+    "role": null
+  },
+  {
+    "_id": "52b157a17c4e6f565416f834",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "cartId": "",
+    "role": "admin"
+  },
+  {
+    "_id": "57f1216152da7088e5ccebdb",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "createHash": "12345",
+    "createCartForUser": "",
+    "role": "admin"
+  },
+  {
+    "_id": "dd34c8624d07d84ff8c80f4c",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "createHash": "12345",
+    "createCartForUser": "",
+    "role": "admin"
+  },
+  {
+    "_id": "db5792fe0112e081a090b7bb",
+    "name": "",
+    "lastname": "",
+    "email": "",
+    "age": "",
+    "password": "",
+    "cartId": "",
+    "role": ""
+  },
+  {
+    "_id": "84c02e908ec93d277dd72eda",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "createHash": "12345",
+    "createCartForUser": "",
+    "role": "admin"
+  },
+  {
+    "_id": "7d6a3815697d61e4798774cb",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "password": "12345",
+    "cartId": "",
+    "role": "admin"
+  },
+  {
+    "_id": "58ecbf3ef9e374e3890ca239",
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "password": "12345",
+    "cartId": "",
+    "role": "admin"
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "password": "9cce640cf496e2f8dc286892c7cd1d5f4f1d4e7327000f0f7e284270deceac19",
+    "cartId": "",
+    "role": "admin",
+    "_id": "191bab4c20f86ac9727a09ef",
+    "salt": "9+HQ2Qn/37T9yYvVp++UmztFpWlzSw4Hi54is61KAVGydiZwiE6lBGY3kmXj8msXReMD3p8n3X8lx3i5d/zJshqglCNc7t9TayZ+uK0mmSu3kYO6NjGOAfuj1oP/YZ5XOPUxqDupklscGSOk1VOQe7+/JnAU/ojWZfAm+imJ6rs="
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "password": "a0b9a3e8f927cf2308ba9a4a0a52173b5cfab7b5115dc0d9350021295fcfdaf5",
+    "cartId": "",
+    "role": "admin",
+    "_id": "aed5bb47fc5748be71ec3b2b",
+    "salt": "30Ig2DTmkDzV5SzMGDlSLQmUE3gLYj5hZVl9brCUbEunfDmm/irMZnHp32OYHKhSVCSXuqNPMtPsRUBmZy4LBwmXQY6qTBRYysPsShwmTZVtaGQ+I8bfaWX0Ss8t9Nqjwq5yeYTwPWqNbTMS6gFUONGfXRjnx6BXYnOBet5cikk="
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "email": "aresden113@gmail.com",
+    "age": "35",
+    "password": "6f332c1d0c6e565c59dc2882d6d4241efa6712489792895b05b1b57f30785776",
+    "cartId": {
+      "products": [],
+      "_id": "31556e905a992c3f39661c14"
+    },
+    "role": "admin",
+    "_id": "cd8f2fb9a5edab96893060f5",
+    "salt": "uFYj4WyEc4zH0JKHXTk9JgaVIvlq4DfB/CXcqM+inSBpwPtinLypNQkFPmEpZvS9t1sH69IIFZXre8V4mIvlTFrl9UbDNStt//uB7Rzxg/0v64QXurZIZ+90vR8oahx5ngAtdMarx9Qzwc8zdGE1YQOE4LwbhgQDlxcMtndxWWY="
+  }
+]

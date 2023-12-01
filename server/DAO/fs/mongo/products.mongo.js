@@ -11,7 +11,6 @@ export default class ProductsMongo {
             response: one._id,
         };
         } catch (error) {
-            console.log(error)
         return {
             message: error.message,
             response: error.fileName + ": " + error.lineNumber

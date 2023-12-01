@@ -4,14 +4,15 @@ import CartsDTO from "../dto/carts.dto.js"
 
 
 
-export default class UsersDTO {
+class UsersDTO{
   constructor(obj) {
-    this.name = null;
-    this.lastname = null;
-    this.email = null;
-    this.age = null;
-    this.cartId = null;
-    this.role = null;
+    this.name = obj.name;
+    this.lastname = obj.lastname;
+    this.email = obj.email;
+    this.age = obj.age;
+    this.password = obj.password;
+    this.cartId = obj.cartId;
+    this.role = obj.role;
     if (args.mode === "dev") {
       this._id = crypto.randomBytes(12).toString("hex");
     }
@@ -51,5 +52,16 @@ export default class UsersDTO {
   async createCartForUser() {
     const cart = new CartsDTO();
     return cart;
-  }
+  } 
+
 }
+
+export default UsersDTO;
+
+
+
+
+
+
+
+

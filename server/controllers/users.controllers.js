@@ -10,6 +10,7 @@ export default class UserController {
         try{
             let response = await this.service.create(req.body);
             return res.status(201).json(response);
+            console.log(response)
         } catch(error){
             next(error);
         }

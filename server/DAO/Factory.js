@@ -20,9 +20,12 @@ switch (args.mode) {
     connect(process.env.MONGO_DB).then(() => console.log("Connect to db"));
     const { default: ProductsMongo } = await import("./fs/mongo/products.mongo.js");
     const { default: CartsMongo } = await import("./fs/mongo/carts.mongo.js");
+    const { default: UsersMongo } = await import("./fs/mongo/users.mongo.js");
+
     dao = {
       Product: ProductsMongo,
       Cart: CartsMongo,
+      User: UsersMongo,
     };
     break;
 }

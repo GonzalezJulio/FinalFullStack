@@ -1,4 +1,6 @@
 import fs from "fs";
+import crypto from "crypto";
+import CartsDTO from "../dto/carts.dto.js";
 
 export default class UsersFS {
     constructor() {
@@ -15,22 +17,27 @@ export default class UsersFS {
         }
         return true;
     }
-    create(data) {
-        try {
-            this.users.push(data);
+    async create(users) {
+        try{
+            users.salt = crypto.randomBytes(128).toString("base64");
+            users.password = crypto.createHmac("sha256", users.salt).update(users.password).digest("hex");
+            users.cartId = new CartsDTO()
+            this.users.push(users);
             let data_json = JSON.stringify(this.users, null, 2);
             fs.writeFileSync(this.path, data_json);
             return {
-                message: "user add",
-                response: user,
+                message: "user created",
+                response: users,
             };
-        } catch (error) {
+        }
+         catch(error){
             console.log(error);
             return {
                 message: error.message,
                 response: error.fileName + ": " + error.lineNumber,
             };
         }
+        
     }
     read() {
         try {
