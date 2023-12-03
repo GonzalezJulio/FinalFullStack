@@ -1,25 +1,15 @@
 import crypto from "crypto";
 import args from "../../config/args.js";
-import CartsFS from "../fs/carts.fs.js";
+
+import CartsMongo from "../fs/mongo/carts.mongo.js";
 
 
 
 class UsersDTO{
-  constructor(obj) {
-    this.name = obj.name;
-    this.lastname = obj.lastname;
-    this.email = obj.email;
-    this.age = obj.age;
-    this.password = obj.password;
-    this.cartId = obj.cartId;
-    this.role = obj.role;
-    if (args.mode === "dev") {
-      this._id = crypto.randomBytes(12).toString("hex");
-    }
-  }
+  constructor() {}
 
   async createUser(userRegisterData) {
-    const user = new UserDTO();
+    const user = new UsersDTO();
     user.name = userRegisterData.name;
     user.lastname = userRegisterData.lastname;
     user.age = userRegisterData.age;
@@ -31,20 +21,21 @@ class UsersDTO{
   }
 
   async createHash(password) {
-    return crypto.hashSync(password, bcrypt.genSaltSync(10));
+    const salt = await crypto.randomBytes(12).toString("hex");
+    const hash = await crypto
+      .pbkdf2Sync(password, salt, 1000, 64, "sha512")
+      .toString("hex");
+    return {
+      salt: salt,
+      hash: hash,
+    };
+
   }
 
   async createCartForUser() {
-    try {
-      const cartCreationResult = await CartsFS.createCart();
-      if (cartCreationResult.status === 200) {
-        return cartCreationResult.payload._id
-      } else {
-        throw new Error('Failed to create a cart for the user.');
-      }
-    } catch (error) {
-      throw error;
-    }
+    const cart = new CartsMongo();
+    const cartId = await cart.create();
+    return cartId;
   }
 
 }

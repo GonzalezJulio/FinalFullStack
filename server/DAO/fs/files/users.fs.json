@@ -129,5 +129,44 @@
       "_id": "b89c45cf45995ef19b4adae2"
     },
     "salt": "5uUpegY9v4EY2MQiSJrAPM9wMpVPqNGC0VciWnUApNnjDvQMDgX2gM880f2gpIq/uW3PChxsqEUhf5kpuu3cWLhSkbSD+qD5Hlmei4gaqtL7pGaygRbmb7qAzAALzo2S5Qrxkd55OtDdCDyDQSD/1YjxxzH7yl/DrjBFTbNxYwA="
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "age": "35",
+    "email": "aresden113@gmail.com",
+    "password": "06670d7dfbc06873896e35882d9ba918d56024b240bb75eed7ad351728ef4623",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "16798c9d2ed72867a34800f8"
+    },
+    "salt": "WKYB7b6CVrEM21kLBKwYsdaW28PXsfbN3LZazZjUm3VJo9pZAopHi9q8QLAIw9crsGix7Jx5XdeVjrzOABm8KlXkmqV3vZ9pxJhDTBFo5aer2wQYesq5Eu68rOWe/c75M+jT05z50RGdgB7qSAzMzt05yVgESDnAcV0xmUzbNag="
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "age": "35",
+    "email": "aresden113@gmail.com",
+    "password": "b5a34c73ef72ee16814543b1b89e7792613446ece63ed764a572d14263b1ba7f",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "78ecd353beb3f29215b6d902"
+    },
+    "salt": "N8JX5pW8PDL15pPr6+CoUN7NKaNBIbSZndCFlBE10g8bxWWfJzpDp4fVaJQoaK3QAKIVKf4Oy3G2eqiOCEb3pevbr6GbnwSLl/vsrMN0hPzZKDz3jsmo2FMmjA54Wedq6Rec2AngDH+wQ8iYCp82C2bhXeeCpYmEdDgzruSQ83I="
+  },
+  {
+    "name": "Romina",
+    "lastname": "Romero",
+    "age": "33",
+    "email": "rominaromero@gmail.com",
+    "password": "d7903c8a192ac37a6f8b20bcc946d9deed73fe97f29f5bd12aab11638a848b8c",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "ea37f0bd145ecb85841d5bf9"
+    },
+    "salt": "wEOFDgwTsfNWCD+AZOTM/JIZucTiUN98PPat/xfPTa+Cs0o4uVfM0zZtimOIcZUaiBjmONfM0s5MYhdJ2M7Q6C2VMJW01h8dcV92RUuKsTOdaqHqI19/dJW6nkKwQzKaeoU1Re0VrnYm2Oza4bmapdQxxhFcgiZq/k5ekFUbrwM="
   }
 ]
