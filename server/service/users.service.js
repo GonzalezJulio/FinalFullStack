@@ -5,9 +5,9 @@ export default class UsersService {
         this.repository = new UsersRepository();
     }
 
-    create = async (data) => {
+    create = async (users) => {
         try{
-            let response = await this.repository.create(data);
+            let response = await this.repository.create(users);
             return response;
         } catch(error){
             console.log(error);

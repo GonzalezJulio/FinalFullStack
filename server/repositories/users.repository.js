@@ -1,19 +1,24 @@
 import UsersDTO from "../DAO/dto/users.dto.js";
 import dao from "../DAO/Factory.js";
 import CartsDTO from "../DAO/dto/carts.dto.js";
+import cartsModel from "../DAO/schemas/carts.schemas.js";
+import args from ".././config/args.js"
+import CartsMongo from "../DAO/fs/mongo/carts.mongo.js";
 
 const { User } = dao;
 
 export default class UsersRepository {
   constructor() {
-    this.cart = new CartsDTO
+   
     this.model = new User();
   }
 
-  create = async (data) => {
+  create = async (users) => {
     try {
-      let cartId = await this.model.create(this.cart)
-      let response = await this.model.create(data, cartId);
+      let cart = new CartsMongo();
+      let cartId = await cart.create();
+      users.cartId = cartId;
+      let response = await this.model.create(users);
       return response;
     } catch (error) {
       console.log(error);

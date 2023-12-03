@@ -116,5 +116,18 @@
     },
     "role": "admin",
     "salt": "foqFsd4R7rh3aumkrjT7/CV1tTU+AFSvsoRsYnHYILBTijhm/JiOwJo4pC+feMA+unWASM3qOZqHqpqE054xKxD8G7/GgFdUhisexjYIHEpdtnCAkhzGM8x+wPk8JGuHubPiA7fitmhJm+9mCGKvHYZlQ45k/gPyI3/ZrTzEG1Y="
+  },
+  {
+    "name": "Julio",
+    "lastname": "Gonzalez",
+    "age": "35",
+    "email": "aresden113@gmail.com",
+    "password": "816abd6f43d3afa7d0794eb3de0dbf768c50026763a1ca9e6a16335cef64f5fe",
+    "role": "admin",
+    "cartId": {
+      "products": [],
+      "_id": "b89c45cf45995ef19b4adae2"
+    },
+    "salt": "5uUpegY9v4EY2MQiSJrAPM9wMpVPqNGC0VciWnUApNnjDvQMDgX2gM880f2gpIq/uW3PChxsqEUhf5kpuu3cWLhSkbSD+qD5Hlmei4gaqtL7pGaygRbmb7qAzAALzo2S5Qrxkd55OtDdCDyDQSD/1YjxxzH7yl/DrjBFTbNxYwA="
   }
 ]

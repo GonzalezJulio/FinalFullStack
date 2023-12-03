@@ -7,7 +7,7 @@ export default function Header() {
     <header className="bg-red-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-          <img src="../../public/img/lasgonzalez_tienda.png" className="logo"></img>
+          <img src="../../src/assets/lasgonzalez_tienda.png" className="logo"></img>
         </h1>
         <form className="bg-slate-100 p-3 rounded-lg flex items-center">
           <input
@@ -27,9 +27,10 @@ export default function Header() {
           <Link to='signin'>
           <li className='text-slate-700 hover:underline'>SignIn</li>
           </Link>
-          <Link to='carts'>
-            <li className='text-slate-700 hover:underline'>Carts</li>
+          <Link to='register'>
+          <li className='text-slate-700 hover:underline'>Register</li>
           </Link>
+         
           
         </ul>
       </div>
