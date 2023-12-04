@@ -1,5 +1,5 @@
 import fs from "fs";
-import crypto from "crypto";
+import bcryptjs from 'bcryptjs'
 import CartsDTO from "../dto/carts.dto.js";
 
 export default class UsersFS {
@@ -18,19 +18,19 @@ export default class UsersFS {
     return true;
   }
   async create(users) {
-    try {
-      users.salt = crypto.randomBytes(128).toString("base64");
-      users.password = crypto
-        .createHmac("sha256", users.salt)
-        .update(users.password)
-        .digest("hex");
-      users.cartId = new CartsDTO();
-      this.users.push(users);
+    try { 
+      const newUser = users;
+      const validUser = await this.readOne(newUser.email);
+      if(validUser.response.email) return { message: "User already exists" };
+      // Hash password
+      newUser.password = await bcryptjs.hash(newUser.password, 10);
+      newUser.cartId = new CartsDTO();
+      this.users.push(newUser);
       let data_json = JSON.stringify(this.users, null, 2);
-      fs.writeFileSync(this.path, data_json);
+      fs.writeFileSync("./server/DAO/fs/files/users.fs.json", data_json);
       return {
         message: "user created",
-        response: users,
+        response: newUser,
       };
     } catch (error) {
       console.log(error);

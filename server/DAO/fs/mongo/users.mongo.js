@@ -1,9 +1,10 @@
 import usersModel from "../../schemas/user.model.js";
 import crypto from "crypto";
-import UsersDTO from "../../dto/users.dto.js";
 import cartsModel from "../../schemas/carts.schemas.js";
+import bcryptjs from 'bcryptjs'
 import CartsDTO from "../../dto/carts.dto.js";
-import CartsMongo from "../mongo/carts.mongo.js";
+import UsersDTO from "../../dto/users.dto.js";
+
 
 export default class UsersMongo {
   constructor() {
@@ -12,15 +13,23 @@ export default class UsersMongo {
   }
 
   async create(users) {
-    try { 
-      
-      let user = await this.model.createUser(users);
+    try {
+      const newUser = users;
+      const validUser = await this.readOne(newUser.email);
+      if(validUser.response.email) return { message: "User already exists" };
 
-      await usersModel.create(user);
+      // Hash password
+      newUser.password = await bcryptjs.hash(newUser.password, 10);
+      newUser.cartId = new cartsModel();
+      const user = new usersModel(newUser);
+      const response = await user.save();
+
+      
       return {
         message: "user created",
-        response: user,
+        response: response,
       };
+      
 
     } catch (error) {
       return {
@@ -32,17 +41,10 @@ export default class UsersMongo {
   async read() {
     try {
       let all = await usersModel.find();
-      if (all.length > 0) {
-        return {
-          message: "user read",
-          response: all,
-        };
-      } else {
-        return {
-          message: "user not found",
-          response: all,
-        };
-      }
+      return {
+        message: "users read",
+        response: all,
+      };
     } catch (error) {
       return {
         message: error.message,
@@ -52,18 +54,16 @@ export default class UsersMongo {
   }
   async readOne(email) {
     try {
-      let one = await usersModel.findOne({
-        email: email,
-      });
-      if (one) {
+      let user = await usersModel.find({ email });
+      if (user.length > 0) {
         return {
           message: "user read",
-          response: one,
+          response: user[0],
         };
       } else {
         return {
           message: "user not found",
-          response: one,
+          response: user,
         };
       }
     } catch (error) {

@@ -168,5 +168,17 @@
       "_id": "ea37f0bd145ecb85841d5bf9"
     },
     "salt": "wEOFDgwTsfNWCD+AZOTM/JIZucTiUN98PPat/xfPTa+Cs0o4uVfM0zZtimOIcZUaiBjmONfM0s5MYhdJ2M7Q6C2VMJW01h8dcV92RUuKsTOdaqHqI19/dJW6nkKwQzKaeoU1Re0VrnYm2Oza4bmapdQxxhFcgiZq/k5ekFUbrwM="
+  },
+  {
+    "name": "Laura",
+    "lastname": "MamaMore",
+    "age": "45",
+    "email": "lauramore@gmail.com",
+    "password": "$2a$10$Fpf9T.FfjRocSF3SfHYytO8W3gKNHqknXGEtyblyw.EPz8m0H6SK2",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "471df7a45ea74408f02fda65"
+    }
   }
 ]

@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import bcryptjs from 'bcryptjs'
 import args from "../../config/args.js";
 
 import CartsMongo from "../fs/mongo/carts.mongo.js";
@@ -21,15 +21,9 @@ class UsersDTO{
   }
 
   async createHash(password) {
-    const salt = await crypto.randomBytes(12).toString("hex");
-    const hash = await crypto
-      .pbkdf2Sync(password, salt, 1000, 64, "sha512")
-      .toString("hex");
-    return {
-      salt: salt,
-      hash: hash,
-    };
-
+    const salt = await bcryptjs.genSalt(args.saltRounds);
+    const hash = await bcryptjs.hash(password, salt);
+    return hash;
   }
 
   async createCartForUser() {

@@ -1,5 +1,7 @@
 import { response } from "express";
 import UsersService from "../service/users.service.js";
+import jwt from "jsonwebtoken";
+import bcryptjs from 'bcryptjs'
 
 export default class UserController {
     constructor(){
@@ -24,9 +26,19 @@ export default class UserController {
         }
     }
     readOne = async (req, res, next) => {
+        const { email, password } = req.body;
+                       
         try{
-            let response = await this.service.readOne(req.params.email);
-            return res.status(200).json(response);
+            let response = await this.service.readOne(email);
+            if(response.message === "user read"){
+                const validUser = await bcryptjs.compare(password, response.response.password);
+                if(validUser){
+                    const token = jwt.sign({ email: response.response.email }, process.env.SECRET, { expiresIn: '1h' });
+                    return res.status(200).json({ message: "user read", response: token });
+                } else {
+                    return res.status(401).json({ message: "Invalid password" });
+                }
+            }
         } catch(error){
             next(error);
         }
