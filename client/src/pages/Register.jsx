@@ -16,7 +16,7 @@ export default function Register() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/auth/', {
+      const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function Register() {
         <input type="text" placeholder="lastname" className="border p-3 rounded-lg" id="lastname" onChange={handleChange} />
         <input type="number" placeholder="age" className="border p-3 rounded-lg" id="age" onChange={handleChange} />
         <input type="email" placeholder="email" className="border p-3 rounded-lg" id="email" onChange={handleChange} />
-        <input type="number" placeholder="password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
+        <input type="text" placeholder="password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
         <input type="text" placeholder="role" className="border p-3 rounded-lg" id="role" onChange={handleChange}/>
         <button className="bg-slate-700 text-white p-3 rounded-lg uppercase">Register</button>
       </form>

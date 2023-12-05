@@ -27,17 +27,18 @@ export default class UserController {
     }
     readOne = async (req, res, next) => {
         const { email, password } = req.body;
-                       
         try{
             let response = await this.service.readOne(email);
-            if(response.message === "user read"){
-                const validUser = await bcryptjs.compare(password, response.response.password);
-                if(validUser){
-                    const token = jwt.sign({ email: response.response.email }, process.env.SECRET, { expiresIn: '1h' });
-                    return res.status(200).json({ message: "user read", response: token });
+            if(response.response.email){
+                const validPassword = await bcryptjs.compare(password, response.response.password);
+                if(validPassword){
+                    const token = jwt.sign({ email: response.response.email }, "secret");
+                    return res.status(200).json({ message: "Logged in", token });
                 } else {
-                    return res.status(401).json({ message: "Invalid password" });
+                    return res.status(401).json({ message: "Invalid credentials" });
                 }
+            } else {
+                return res.status(401).json({ message: "Invalid credentials" });
             }
         } catch(error){
             next(error);

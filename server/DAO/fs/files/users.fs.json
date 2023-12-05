@@ -180,5 +180,41 @@
       "products": [],
       "_id": "471df7a45ea74408f02fda65"
     }
+  },
+  {
+    "name": "Sergio",
+    "lastname": "Metallica",
+    "age": "50",
+    "email": "sergiometallica@gmail.com",
+    "password": "$2a$10$cPbtugHCn9mXi8tOt.DU9eDTFE/Ow2HwBnKqvkUnDIkkh9MhOr5R.",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "c2a47548cd4caf0a3d6fd49d"
+    }
+  },
+  {
+    "name": "Andrea",
+    "lastname": "Caceres",
+    "email": "andreacaceres@gmail.com",
+    "age": 50,
+    "password": "$2a$10$G06Hn/EjCuDsvhuFkKrg6uec2MDx8b7rS51XCOLklPJI3MIGh8vZS",
+    "cartId": {
+      "products": [],
+      "_id": "d1f29954a88b7d61d890fada"
+    },
+    "role": "user"
+  },
+  {
+    "name": "Coder",
+    "lastname": "House",
+    "age": "50",
+    "email": "adminCoder@coder.com",
+    "password": "$2a$10$sayflw93/1cjIEfp3MsJ8Or8/FqjQDQnzYSHCzABv0718errs.abi",
+    "role": "user",
+    "cartId": {
+      "products": [],
+      "_id": "02b51a011746cc5c92a0c925"
+    }
   }
 ]

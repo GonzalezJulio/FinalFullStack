@@ -7,6 +7,7 @@ export default class UsersRouter extends MyRouter {
     this.create("/", create);
     this.read("/", read);
     this.create("/login", readOne);
+    
     this.update("/:id", update);
     this.destroy("/:id", destroy);
   }
