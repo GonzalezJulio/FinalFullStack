@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import OAuth from "../components/Header/OAuth";
 
 export default function Register() {
   const [formData, setFormData] = useState({});
@@ -16,7 +17,7 @@ export default function Register() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('/api/auth/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,9 +48,10 @@ export default function Register() {
         <input type="text" placeholder="lastname" className="border p-3 rounded-lg" id="lastname" onChange={handleChange} />
         <input type="number" placeholder="age" className="border p-3 rounded-lg" id="age" onChange={handleChange} />
         <input type="email" placeholder="email" className="border p-3 rounded-lg" id="email" onChange={handleChange} />
-        <input type="text" placeholder="password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
+        <input type="password" placeholder="password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
         <input type="text" placeholder="role" className="border p-3 rounded-lg" id="role" onChange={handleChange}/>
-        <button className="bg-slate-700 text-white p-3 rounded-lg uppercase">Register</button>
+        <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover: opacity-95 disabled: opacity-80">Register</button>
+        <OAuth/>
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>

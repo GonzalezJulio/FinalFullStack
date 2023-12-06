@@ -2,6 +2,9 @@ import { response } from "express";
 import UsersService from "../service/users.service.js";
 import jwt from "jsonwebtoken";
 import bcryptjs from 'bcryptjs'
+import 'dotenv/config'
+import passport from "passport";
+import { isValidPassword } from "../utils/utils.js";
 
 export default class UserController {
     constructor(){
@@ -12,7 +15,6 @@ export default class UserController {
         try{
             let response = await this.service.create(req.body);
             return res.status(201).json(response);
-            console.log(response)
         } catch(error){
             next(error);
         }
@@ -29,17 +31,13 @@ export default class UserController {
         const { email, password } = req.body;
         try{
             let response = await this.service.readOne(email);
-            if(response.response.email){
-                const validPassword = await bcryptjs.compare(password, response.response.password);
-                if(validPassword){
-                    const token = jwt.sign({ email: response.response.email }, "secret");
-                    return res.status(200).json({ message: "Logged in", token });
-                } else {
-                    return res.status(401).json({ message: "Invalid credentials" });
-                }
-            } else {
-                return res.status(401).json({ message: "Invalid credentials" });
-            }
+            
+            if(!response.response[0]) return res.status(400).send({ status: "error", error: "Invalid credentials" });
+            let isValidPassword = await bcryptjs.compare(password, response.response[0].password);
+            
+            if(!isValidPassword) return res.status(400).send({ status: "error", error: "Invalid credentials" });
+            let token = jwt.sign({ id: response.response[0]._id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
+            return res.status(200).json({ status: "success", token: token });
         } catch(error){
             next(error);
         }

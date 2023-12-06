@@ -54,24 +54,17 @@ export default class UsersMongo {
   }
   async readOne(email) {
     try {
-      let user = await usersModel.find({ email });
-      if (user.length > 0) {
+      let one = await usersModel.find({ email });
+      return {
+        message: "user read",
+        response: one,
+      };
+      } catch (error) {
         return {
-          message: "user read",
-          response: user[0],
-        };
-      } else {
-        return {
-          message: "user not found",
-          response: user,
+          message: error.message,
+          response: error.fileName + ": " + error.lineNumber,
         };
       }
-    } catch (error) {
-      return {
-        message: error.message,
-        response: error.fileName + ": " + error.lineNumber,
-      };
-    }
   }
   async update(email) {
     try {

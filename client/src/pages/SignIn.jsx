@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import OAuth from "../components/Header/OAuth";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -16,10 +17,10 @@ export default function SignIn() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -32,23 +33,38 @@ export default function SignIn() {
       }
       setLoading(false);
       setError(null);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       setLoading(false);
       setError(error.message);
     }
   };
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input type="email" placeholder="email" className="border p-3 rounded-lg" id="email" onChange={handleChange} />
-        <input type="text" placeholder="password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
-        <button className="bg-slate-700 text-white p-3 rounded-lg uppercase">Register</button>
+    <div className="p-3 max-w-lg mx-auto">
+      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          type="email"
+          placeholder="email"
+          className="border p-3 rounded-lg"
+          id="email"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          className="border p-3 rounded-lg"
+          id="password"
+          onChange={handleChange}
+        />
+        <button className="bg-red-200 text-white p-3 rounded-lg uppercase">
+          Login
+        </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Dont have an account?</p>
-        <Link to={'/register'}>
+        <Link to={"/register"}>
           <span className="text-blue-700">Register</span>
         </Link>
       </div>

@@ -1,5 +1,7 @@
 import MyRouter from "../router.js";
 import UsersController from "../../controllers/users.controllers.js";
+import passport from "passport";
+
 let controllers = new UsersController();
 let { create, read, readOne, update, destroy } = controllers;
 export default class UsersRouter extends MyRouter {
@@ -7,8 +9,9 @@ export default class UsersRouter extends MyRouter {
     this.create("/", create);
     this.read("/", read);
     this.create("/login", readOne);
-    
     this.update("/:id", update);
     this.destroy("/:id", destroy);
+
+    
   }
 }
