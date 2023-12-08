@@ -68,6 +68,9 @@ export default function SignIn() {
           <span className="text-blue-700">Register</span>
         </Link>
       </div>
+      <div>
+        <p>Forgot password</p>
+      </div>
     </div>
   );
 }

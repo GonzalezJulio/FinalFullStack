@@ -66,34 +66,31 @@ passport.use(
 );
 
 passport.use(
-  "github",
-    new gitHubService.Strategy(
+    new gitHubService(
         {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
         callbackURL: process.env.GITHUB_CALLBACKURL,
         },
-        async (accessToken, refreshToken, profile, done) => {
+        async function (accessToken, refreshToken, profile, done) {
         try {
-            const user = await userModel.findOne({ githubId: profile.id });
+            const user = await userModel.findOne({ email: profile._json.email });
             if (user) {
+            console.log("Inicializacion de Usuario: Usuario ya existe");
             return done(null, user);
-            } else {
-            const newUser = {
-                githubId: profile.id,
-                name: profile.displayName,
-                username: profile.username,
-                email: profile.emails[0].value,
-                avatar: profile.photos[0].value,
-            };
+            }
+            const newUser = new UsersDTO({
+            email: profile._json.email,
+            password: "123456",
+            });
             await userModel.create(newUser);
             return done(null, newUser);
-            }
         } catch (error) {
-            done(error, false, error.message);
+            return done(error);
         }
         }
+    
     )
-);
+)
 
 export const initPassport = () => {};

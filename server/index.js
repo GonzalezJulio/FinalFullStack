@@ -37,7 +37,12 @@ app.use(session({
 //middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+}))
 /* app.use(morgan("dev")) */
 initPassport();
 app.use(passport.initialize());
