@@ -12,7 +12,7 @@ export default function OAuth() {
     <button
       onClick={handleOAuth}
       type='button'
-      className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+      className='bg-red-200 text-white p-3 rounded-lg uppercase hover:opacity-95'
     >
       Continue with Github
     </button>

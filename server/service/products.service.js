@@ -29,7 +29,7 @@ export default class ProductsService {
             }
         }
     }
-    read = async (id) => {
+    readOne = async (id) => {
         try{
             let response = await this.repository.read(id)
             return response

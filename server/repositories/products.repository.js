@@ -32,7 +32,7 @@ export default class ProductsRepository {
       };
     }
   };
-  read = async (id)=> {
+  readOne = async (id)=> {
     try {
       let response = await this.model.read(id);
       return response;

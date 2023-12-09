@@ -20,19 +20,11 @@ export default class ProductsMongo {
     
     read = async () => {
         try {
-        let all = await productModel.find();
-        if(all.length > 0){
-            return {
-                message: "product read",
-                response: all
-            };
-        }else{
-            return {
-                message: "product not found",
-                response: all
-            };
-        }
-        
+        let all = await productModel.find().lean();
+        return {
+            message: "products found",
+            response: all
+        };
         } catch (error) {
         return {
             message: error.message,
@@ -40,7 +32,7 @@ export default class ProductsMongo {
         };
         }
     };
-    read = async (id) => {
+    readOne = async (id) => {
         try {
         let one = await productModel.findById(id);
         if(one) {

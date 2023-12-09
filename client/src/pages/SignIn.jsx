@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import OAuth from "../components/Header/OAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { userSignInStart, userSignInSuccess, userSignInFailure } from "../redux/user/userslice";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error } = useSelector((state) => state.user)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -16,7 +18,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      dispatch(userSignInStart())
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -27,16 +29,13 @@ export default function SignIn() {
       const data = await res.json();
       console.log(data);
       if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(userSignInFailure(data.message))
         return;
       }
-      setLoading(false);
-      setError(null);
+      dispatch(userSignInSuccess(data))
       navigate("/");
     } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      dispatch(userSignInFailure(error.message))
     }
   };
   return (
@@ -57,8 +56,11 @@ export default function SignIn() {
           id="password"
           onChange={handleChange}
         />
-        <button className="bg-red-200 text-white p-3 rounded-lg uppercase">
-          Login
+        <button
+          disabled={loading}
+          className='bg-red-200 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+        >
+          {loading ? 'Loading...' : 'Sign In'}
         </button>
         <OAuth />
       </form>

@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Products from "./pages/Products";
 import Carts from "./pages/Carts";
+
 
 export default function App() {
   return (
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/carts" element={<Carts />} />
 
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
