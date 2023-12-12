@@ -26,9 +26,11 @@ const userSchema = new mongoose.Schema({
     }, 
     avatar: {
         type: String,
-        default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-       }
-})
+        default: "https://i.pinimg.com/originals/a1/b8/7b/a1b87bc0de86d2735e28bf5ba81dd69a.png",
+       },
+},
+{ timestamps: true }
+)
 
 const userModel = mongoose.model(collectionName, userSchema)
 export default userModel

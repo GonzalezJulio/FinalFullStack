@@ -9,11 +9,7 @@ export default function Header() {
     <header className="bg-red-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-          <img
-            class="w-16 md:w-32 lg:w-48"
-            src="../../src/assets/lasgonzalez_tienda.png"
-            className="logo"
-          ></img>
+          <img className="w-16 md:w-32 lg:w-48" src="../../src/assets/lasgonzalez_tienda.png"></img>
         </h1>
         <form className="bg-slate-100 p-3 rounded-lg flex items-center">
           <input
@@ -34,15 +30,15 @@ export default function Header() {
               Products
             </li>
           </Link>
-          <Link to='/profile'>
+          <Link to="/profile">
             {currentUser ? (
               <img
-                className='rounded-full h-7 w-7 object-cover'
+                className="rounded-full h-7 w-7 object-cover"
                 src={currentUser.avatar}
-                alt='profile'
+                alt="profile"
               />
             ) : (
-              <li className=' text-slate-700 hover:underline'> Sign in</li>
+              <li className=" text-slate-700 hover:underline"> Sign in</li>
             )}
           </Link>
         </ul>

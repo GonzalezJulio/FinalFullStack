@@ -22,5 +22,7 @@ export default class UsersRouter extends MyRouter {
         // Successful authentication, redirect home.
         res.redirect('http://localhost:5173/');
       });
+
+      this.read('google', passport.authenticate('google', { scope: ['user:email']}), async (req, res) => {})
   }
 }

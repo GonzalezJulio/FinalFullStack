@@ -24,7 +24,7 @@ const productsSchema = new mongoose.Schema({
     },
     code:{
         type: String,
-        required: true,
+        
     },
     stock:{
         type: Number,
@@ -34,15 +34,15 @@ const productsSchema = new mongoose.Schema({
         type: String,
         requierd: true,
     },
-    /* owner: {
+    owner: {
         type: String,
-        required: true,
-        default: 'admin'
-    } */
+        
+        default: 'admin',
+    }
     
 });
 
-/* productsSchema.plugin(paginate) */
+productsSchema.plugin(paginate)
 const productModel = mongoose.model(collectionName, productsSchema)
 
 export default productModel 

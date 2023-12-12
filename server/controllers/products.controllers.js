@@ -16,9 +16,7 @@ export default class ProductsController {
 
     read =  async (req, res, next) => {
         try{
-            
-            let response = await this.service.read()
-            console.log(response)
+            let response = await this.service.read(req.query)
             return res.status(200).json(response)
         } catch(error){
             next(error)

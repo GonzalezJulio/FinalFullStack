@@ -1,8 +1,21 @@
 import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
-
-
-
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage';
+import { app } from '../firebase';
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  signOutUserStart,
+} from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 export default function Profile() {
@@ -208,9 +221,9 @@ export default function Profile() {
         </button>
         <Link
           className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
-          to={'/create-listing'}
+          to={'/create-product'}
         >
-          Create Listing
+          Create Product
         </Link>
       </form>
       <div className='flex justify-between mt-5'>
