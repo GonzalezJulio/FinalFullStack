@@ -17,9 +17,9 @@ export default class UsersService {
             };
         }
     }
-    read = async () => {
+    read = async (id) => {
         try{
-            let response = await this.repository.read();
+            let response = await this.repository.read(id);
             return response;
         } catch(error){
             console.log(error);
@@ -41,6 +41,19 @@ export default class UsersService {
             };
         }
     }
+    readCart = async (user) => {
+        try{
+            let response = await this.repository.readCart(user.cartId);
+            return response;
+        } catch(error){
+            console.log(error);
+            return {
+                message: error.message,
+                response: error.name,
+            };
+        }
+    }
+
     update = async (email, data) => {
         try{
             let response = await this.repository.update(email, data);

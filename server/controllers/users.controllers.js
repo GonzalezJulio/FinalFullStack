@@ -21,7 +21,8 @@ export default class UserController {
     }
     read = async (req, res, next) => {
         try{
-            let response = await this.service.read();
+            let response = await this.service.read(req.params.id);
+            console.log(response)
             return res.status(200).json(response);
         } catch(error){
             next(error);
@@ -38,6 +39,15 @@ export default class UserController {
             if(!isValidPassword) return res.status(400).send({ status: "error", error: "Invalid credentials" });
             let token = jwt.sign({ id: response.response[0]._id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
             return res.status(200).json({ status: "success", token: token });
+        } catch(error){
+            next(error);
+        }
+    }
+
+    readCart = async (req, res, next) => {
+        try{
+            let response = await this.service.readCart(req.params.user.cartId);
+            return res.status(200).json(response);
         } catch(error){
             next(error);
         }

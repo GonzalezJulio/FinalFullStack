@@ -9,6 +9,9 @@ export default class ProductsRouter extends MyRouter {
         this.read("/:id", readOne)
         this.update("/:id", update);
         this.destroy("/:id", destroy);
+
+
+        
     }
 }
 

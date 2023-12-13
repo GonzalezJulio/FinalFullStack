@@ -21,11 +21,12 @@ switch (args.mode) {
     const { default: ProductsMongo } = await import("./fs/mongo/products.mongo.js");
     const { default: CartsMongo } = await import("./fs/mongo/carts.mongo.js");
     const { default: UsersMongo } = await import("./fs/mongo/users.mongo.js");
-
+    const { default: TicketsMongo } = await import("./fs/mongo/tickets.mongo.js")
     dao = {
       Product: ProductsMongo,
       Cart: CartsMongo,
       User: UsersMongo,
+      Ticket: TicketsMongo,
     };
     break;
 }

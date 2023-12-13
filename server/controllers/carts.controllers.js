@@ -1,5 +1,6 @@
 import { response } from "express"
 import CartsService from "../service/carts.service.js"
+import TicketsService from "../service/tickets.service.js"
 
 export default class CartsControllers {
     constructor() {
@@ -9,6 +10,14 @@ export default class CartsControllers {
     create = async (req, res, next) => {
         try{
             let response = await this.service.create(req.body)
+            return res.status(201).json(response)
+        } catch(error){
+            next(error)
+        }
+    }
+    createAddProduct = async (req, res, next) => {
+        try{
+            let response = await this.service.createAddProduct(req.params.cid, req.params.pid, req.params.id)
             return res.status(201).json(response)
         } catch(error){
             next(error)
@@ -48,6 +57,19 @@ export default class CartsControllers {
             return res.status(200).json(response)
         }catch(error){
             next(error)
+        }
+    }
+
+    createTicket = async (req, res) => {
+        try {
+            console.log('ticket controller')
+            const cid = req.params.cid
+            const user = req.session.user
+            const response = await TicketsService.create(user, cid)
+            res.status(200).json(response)
+
+        } catch (error) {
+            throw error
         }
     }
 }

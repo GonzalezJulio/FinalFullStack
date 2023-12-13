@@ -17,6 +17,18 @@ export default class CartsService {
             };
         }
     }
+    createAddProduct = async () => {
+        try {
+            let response = await this.repository.createAddProduct();
+            return response;
+        } catch (error) {
+            console.log(error);
+            return {
+                message: error.message,
+                reponse: error.name,
+            };
+        }
+    }
     read = async () => {
         try {
             let response = await this.repository.read();

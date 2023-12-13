@@ -9,6 +9,7 @@ import notFoundhandler from './middlewares/notFoundhandler.js';
 import IndexRouter from './routes/index.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import __dirname from './dirname.js';
 
 let router = new IndexRouter()
 router = router.getRouter()
@@ -47,6 +48,7 @@ app.use(cors({
 initPassport();
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use("/api",router)
 app.use(errorHandler)

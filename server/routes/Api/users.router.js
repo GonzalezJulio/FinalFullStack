@@ -5,14 +5,18 @@ import { checkSession } from "../../utils/secure.js";
 
 
 let controllers = new UsersController();
-let { create, read, readOne, update, destroy } = controllers;
+
+let { create, read, readOne, readCart, update, destroy } = controllers;
+
 export default class UsersRouter extends MyRouter {
   init() {
     this.create("/", create);
     this.read("/", read);
     this.create("/login", readOne);
+    this.read("/:id", readCart)
     this.update("/:id", update);
     this.destroy("/:id", destroy);
+    
 
     this.read('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => { })
     

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import paginate from "mongoose-paginate-v2"
+import 'dotenv/config'
 
 const collectionName = 'products'
 // (title, description, price, thumbnail, code, stock, category)
@@ -18,9 +19,9 @@ const productsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    thumbnail:{
-        type: String,
-        
+    images: {
+        type: String,  
+        required: true,   
     },
     code:{
         type: String,
@@ -41,6 +42,8 @@ const productsSchema = new mongoose.Schema({
     }
     
 });
+
+
 
 productsSchema.plugin(paginate)
 const productModel = mongoose.model(collectionName, productsSchema)

@@ -7,6 +7,7 @@ export default class ProductsController {
 
     create = async (req, res, next) => {
         try{
+            
             let response = await this.service.create(req.body)
             return res.status(201).json(response)
         } catch(error){
@@ -33,7 +34,11 @@ export default class ProductsController {
 
     update =  async (req, res, next) => {
         try{
-            let response = await this.service.update(req.params.id, req.body)
+            if(req.file) {
+                const { filename } = req.file
+                product.humbnail(filename)
+            }
+            let response = await this.service.update(req.params.id, req.body, req.filename)
             return res.status(201).json(response)
         }catch(error){
             next(error)

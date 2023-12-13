@@ -163,14 +163,13 @@ export default function Profile() {
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <p className='text-center'>Update your profile</p>
+      <p className='text-center text-red-700'>
+        {fileUploadError ? 'Error uploading image' : ''}
+      </p>
+      
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
-          onChange={(e) => setFile(e.target.files[0])}
-          type='file'
-          ref={fileRef}
-          hidden
-          accept='image/*'
-        />
+        <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
         <img
           onClick={() => fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
@@ -192,8 +191,8 @@ export default function Profile() {
         </p>
         <input
           type='text'
-          placeholder='username'
-          defaultValue={currentUser.username}
+          placeholder='name'
+          defaultValue={currentUser.name}
           id='username'
           className='border p-3 rounded-lg'
           onChange={handleChange}

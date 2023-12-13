@@ -50,7 +50,7 @@ export default function CreateProduct() {
         <input type="text" placeholder="title" className="border p-3 rounded-lg" id="title" onChange={handleChange} />
         <input type="text" placeholder="description" className="border p-3 rounded-lg" id="description" onChange={handleChange} />
         <input type="number" placeholder="price" className="border p-3 rounded-lg" id="price" onChange={handleChange} />
-        <input type="email" placeholder="thumbnail" className="border p-3 rounded-lg" id="thumbnail" onChange={handleChange} />
+        <input type="file" placeholder="images" className="border p-3 rounded-lg" id="images" onChange={handleChange} />
         <input type="password" placeholder="code" className="border p-3 rounded-lg" id="code" onChange={handleChange} />
         <input type="text" placeholder="stock" className="border p-3 rounded-lg" id="stock" onChange={handleChange}/>
         <input type="text" placeholder="category" className="border p-3 rounded-lg" id="category" onChange={handleChange}/>

@@ -16,34 +16,48 @@ export default class UsersMongo {
     try {
       const newUser = users;
       const validUser = await this.readOne(newUser.email);
-      if(validUser.response.email) return { message: "User already exists" };
-
-      // Hash password
+  
+      // Verificar si el usuario ya existe
+      if (validUser && validUser.response && validUser.response.email) {
+        return { message: "User already exists" };
+      }
+  
+      // Obtener el carrito compartido o crear uno nuevo si no existe
+      let sharedCart = await cartsModel.findOne({ isShared: true });
+  
+      if (!sharedCart) {
+        // Si no existe, crea un nuevo carrito compartido
+        sharedCart = new cartsModel({ isShared: true });
+        await sharedCart.save();
+      }
+  
+      // Asignar el carrito compartido al nuevo usuario
+      newUser.cartId = sharedCart;
+  
+      // Hash de la contraseña
       newUser.password = await bcryptjs.hash(newUser.password, 10);
-      newUser.cartId = new cartsModel();
+  
+      // Crear y guardar el nuevo usuario
       const user = new usersModel(newUser);
       const response = await user.save();
-
-      
+  
       return {
-        message: "user created",
+        message: "User created",
         response: response,
       };
-      
-
     } catch (error) {
       return {
         message: error.message,
-        response: error.fileName + ": " + error.lineNumber,
+        response: error.stack, // Devolver la pila de llamadas para facilitar la depuración
       };
     }
   }
   async read() {
     try {
-      let all = await usersModel.find();
+      let one = await usersModel.find()
       return {
-        message: "users read",
-        response: all,
+        message: "user read",
+        response: one,
       };
     } catch (error) {
       return {
@@ -66,6 +80,21 @@ export default class UsersMongo {
         };
       }
   }
+ /*  async readCart (user) {
+    try {
+      let one = await usersModel.findById(user).populate("cartId");
+      return {
+        message: "user read",
+        response: one,
+      };
+    } catch (error) {
+      return {
+        message: error.message,
+        response: error.fileName + ": " + error.lineNumber,
+      };
+    }
+  } */
+
   async update(email) {
     try {
       let one = await usersModel.updateOne(

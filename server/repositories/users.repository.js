@@ -1,8 +1,6 @@
-import UsersDTO from "../DAO/dto/users.dto.js";
+
 import dao from "../DAO/Factory.js";
-import CartsDTO from "../DAO/dto/carts.dto.js";
-import cartsModel from "../DAO/schemas/carts.schemas.js";
-import args from ".././config/args.js"
+
 import CartsMongo from "../DAO/fs/mongo/carts.mongo.js";
 
 const { User } = dao;
@@ -29,9 +27,9 @@ export default class UsersRepository {
     }
   };
 
-  read = async () => {
+  read = async (id) => {
     try {
-      let response = await this.model.read();
+      let response = await this.model.read(id);
       return response;
     } catch (error) {
       console.log(error);
@@ -54,6 +52,18 @@ export default class UsersRepository {
       };
     }
   };
+  readCart = async (user) => {
+    try {
+      let response = await this.model.readCart(user.cartId);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return {
+        message: error.message,
+        response: error.name,
+      };
+    }
+  }
 
   update = async (email, data) => {
     try {

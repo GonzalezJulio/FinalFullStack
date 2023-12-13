@@ -19,6 +19,19 @@ export default class CartsRepository {
             };
         }
     }
+
+    createAddProduct = async (cid, pid, user) => {
+        try{
+            let response = await this.model.createAddProduct(cid, pid, user);
+            return response;
+        }catch(error){
+            console.log(error);
+            return {
+                message: error.message,
+                response: error.name,
+            };
+        }
+    }
     read = async () => {
         try{
             let response = await this.model.read();
