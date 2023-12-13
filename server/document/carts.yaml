@@ -1,0 +1,247 @@
+paths:
+#api carts
+/api/products:
+
+get:
+      summary: Get all carts.
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: All carts obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#DAO/schemas/carts'
+        "500":
+          description: Server error.
+    post:
+      summary: Create a new cart
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Cart created succesfully.
+        "500":
+          description: Server error.
+  
+  /api/carts/{CartId}:
+    get:
+      summary: Get the cart with named id
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart you want to get.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Cart obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#DAO/schemas/carts'
+        "404":
+          description: The cart was not found.
+        "500":
+          description: Server error.
+    put:
+      summary: Update the entire products array of the cart with named id.
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart you want to update.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Cart updated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#DAO/schemas/carts'
+        "404":
+          description: The cart was not found.
+        "500":
+          description: Server error.
+    delete:
+      summary: Empty the cart with named id.
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart you want to empty.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Cart emptied.
+        "404":
+          description: The cart was not found.
+        "500":
+          description: Server error.
+
+
+  /api/carts/{CartId}/products/{ProductId}:
+    post:
+      summary: Add product with named id to cart with named id.
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart.
+          schema:
+            $type: String
+        - name: ProductId
+          in: path
+          required: true
+          description: This is the id of the product you want to add to the cart.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Product added to cart.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#DAO/schemas/carts'
+        "404":
+          description: The cart or the product was not found.
+        "500":
+          description: Server error.
+    put:
+      summary: Update the quantity of a product inside the product array of the cart with named id.
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart.
+          schema:
+            $type: String
+        - name: ProductId
+          in: path
+          required: true
+          description: This is the id of the product of which you want to update its quantity.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Cart and product quantity updated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#DAO/schemas/carts'
+        "404":
+          description: The cart or the product was not found.
+        "500":
+          description: Server error.
+    delete:
+      summary: Delete the product from the cart with named id.
+      tags:
+        - Carts
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: This is the id of the cart.
+          schema:
+            $type: String
+        - name: ProductId
+          in: path
+          required: true
+          description: This is the id of the product you want to delete from the cart.
+          schema:
+            $type: String
+      responses:
+        "200":
+          description: Product was deleted from cart.
+        "404":
+          description: The cart or the product was not found.
+        "500":
+          description: Server error.
+
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Mongo document Id.
+        products:
+          type: array
+          description: Array of products contained in the cart.
+          items:
+            type: object
+            properties:
+              product:
+                $ref: '#DAO/schemas/carts'
+              quantity:
+                type: integer
+                description: The quantity of the product in the cart.
+      example:
+       payload:
+                    _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                    title: Vaso Unicornio
+                    category: Vasos
+                    description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                    price: 5000
+                    thumbnail:
+                    code: Vaso
+                    stock: 50
+                    owner: olivia113@gmail.com
+      Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+        title:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        thumbnail:
+          type: string
+        code:
+          type: string
+        stock:
+          type: number
+        owner:
+          type: string
+    example:
+       payload:
+                    _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                    title: Vaso Unicornio
+                    category: Vasos
+                    description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                    price: 5000
+                    thumbnail:
+                    code: Vaso
+                    stock: 50
+                    owner: olivia113@gmail.com

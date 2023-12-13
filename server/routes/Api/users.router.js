@@ -12,10 +12,10 @@ export default class UsersRouter extends MyRouter {
   init() {
     this.create("/", create);
     this.read("/", read);
-    this.create("/login", readOne);
-    this.read("/:id", readCart)
-    this.update("/:id", update);
-    this.destroy("/:id", destroy);
+    this.create("/login", checkSession, readOne);
+    this.read("/:id", checkSession, readCart)
+    this.update("/:id", checkSession, update);
+    this.destroy("/:id", checkSession, destroy);
     
 
     this.read('/github', passport.authenticate('github', { scope: ['user:email'] }), async (req, res) => { })

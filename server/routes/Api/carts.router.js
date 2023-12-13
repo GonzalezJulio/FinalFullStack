@@ -6,7 +6,7 @@ let { create, createAddProduct, read, readOne,  update, destroy } = controllers;
 export default class CartsRouter extends MyRouter {
     init() {
         this.create("/", create);
-        ;
+      
         this.read("/", read);
         this.read("/:id", readOne);
         this.update("/:id", update);

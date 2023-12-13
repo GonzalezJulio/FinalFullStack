@@ -1,0 +1,218 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  description: API for managing products
+  version: 1.0.0
+tags:
+  - name: Products
+    description: Operations related to products
+
+paths:
+
+  /api/products:
+    get:
+      summary: Get all products.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: All products obtained.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              example:
+                - _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                  title: Vaso Unicornio
+                  category: Vasos
+                  description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                  price: 5000
+                  thumbnail: null
+                  code: Vaso
+                  stock: 50
+                  owner: olivia113@gmail.com
+                - _id: ObjectId('64f4f0cc9797cb8f930d2f43')
+                  title: Botella termica Floreada
+                  category: Botellas
+                  description: Botella térmica, frío/calor, hasta 8 hrs mantiene la temperatura.
+                  price: 10500
+                  thumbnail: null
+                  code: Botella
+                  stock: 50
+                  owner: aresden113@gmial.com
+        "500":
+          description: Server error.
+
+    post:
+      summary: Create a new product.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Product created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message, with info about operation.
+                  payload:
+                    $ref: '#/components/schemas/Product'
+              example:
+                message: Product created.
+                payload:
+                  _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                  title: Vaso Unicornio
+                  category: Vasos
+                  description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                  price: 5000
+                  thumbnail: null
+                  code: Vaso
+                  stock: 50
+                  owner: olivia113@gmail.com
+        "500":
+          description: Server error.
+
+  /api/products/{ProductId}:
+    get:
+      summary: Get the product with named id.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: This is the id of the product you want to get.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product obtained.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: The product was not found.
+        "500":
+          description: Server error.
+
+    put:
+      summary: Update the product with named id.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: This is the id of the product you want to update.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message, with info about operation.
+                  payload:
+                    $ref: '#/components/schemas/Product'
+              example:
+                message: Product updated.
+                payload:
+                  _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                  title: Vaso Unicornio
+                  category: Vasos
+                  description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                  price: 5000
+                  thumbnail: null
+                  code: Vaso
+                  stock: 50
+                  owner: olivia113@gmail.com
+        "404":
+          description: The product was not found.
+        "500":
+          description: Server error.
+
+    delete:
+      summary: Delete the product with named id.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: This is the id of the product you want to delete.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A message, with info about operation.
+                  payload:
+                    $ref: '#/components/schemas/Product'
+              example:
+                message: Product deleted.
+                payload:
+                  _id: ObjectId('64f4c4f4cf8d6dc14b9707d0')
+                  title: Vaso Unicornio
+                  category: Vasos
+                  description: Vaso con tapa Unicornio, de 450 ml con sorbete.
+                  price: 5000
+                  thumbnail: null
+                  code: Vaso
+                  stock: 50
+                  owner: olivia113@gmail.com
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: ObjectId
+          description: Mongo document Id.
+        title:
+          type: string
+          required: true
+          description: Title of the product.
+        category:
+          type: string
+          required: true
+          description: Category of the product.
+        description:
+          type: string
+          required: true
+          description: Description of the product.
+        price:
+          type: number
+          required: true
+          description: Price of the product.
+        code:
+          type: string
+          required: true
+          description: Unique code of the product.
+        stock:
+          type: number
+          required: true
+          description: Stock of the product.
+        owner:
+          type: string
+          required: true
+          description: If premium user, then email. If admin, admin.

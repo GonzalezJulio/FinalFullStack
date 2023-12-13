@@ -10,6 +10,8 @@ import IndexRouter from './routes/index.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import __dirname from './dirname.js';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express';
 
 let router = new IndexRouter()
 router = router.getRouter()
@@ -53,6 +55,26 @@ app.use(passport.session());
 app.use("/api",router)
 app.use(errorHandler)
 app.use(notFoundhandler)
+
+const swaggerOptions = {
+  definition: {
+      openapi: '3.0.0',
+      info: {
+          title: 'Las Gonzalez Tienda API Doc',
+          description: 'Here you can find my API documentation.',
+          version: '1.0.0',
+          contact: {
+              name: 'Gonzalez, Julio',
+              url: 'https://www.linkedin.com/in/julio-gonzalez-82a705245',
+          }
+      }
+  },
+  // Paths to files containing OpenAPI definitions (you can use glob patterns)
+  apis: ['./src/document/*.yaml']
+}
+
+const swaggerSpecs = swaggerJSDoc(swaggerOptions)
+app.use('/api/document', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerSpecs))
 
 
 
